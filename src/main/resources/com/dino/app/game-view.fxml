@@ -6,6 +6,6 @@
 
 <HBox prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #d98382;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dino.app.controllers.GameController">
    <children>
-      <Canvas height="1081.0" width="1921.0" />
+      <Canvas fx:id="canvas" height="1081.0" width="1921.0" />
    </children>
 </HBox>

@@ -6,15 +6,15 @@ public class DifficultyController extends BaseController {
 
     @FXML
     protected void onEasyStartButtonClick() {
-        screenController.setScene("aboutScene");
+        screenController.setScene("gameScene");
     }
     @FXML
     protected void onMediumStartButtonClick() {
-        screenController.setScene("aboutScene");
+        screenController.setScene("gameScene");
     }
 
     @FXML
     protected void onHardStartButtonClick() {
-        screenController.setScene("aboutScene");
+        screenController.setScene("gameScene");
     }
 }
