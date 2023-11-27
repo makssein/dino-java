@@ -10,6 +10,10 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 
 public class GameController extends BaseController {
     @FXML
@@ -23,6 +27,7 @@ public class GameController extends BaseController {
     private DinoObject dino;
     private ForrestObject forrest;
     private boolean isPlaying = true;
+    private int score = 0;
 
     @FXML
     private void initialize() {
@@ -59,6 +64,7 @@ public class GameController extends BaseController {
         dino.restartDino();
 
         isPlaying = true;
+        score = 0;
     }
 
     public void draw() {
@@ -69,14 +75,24 @@ public class GameController extends BaseController {
         forrest.getTrees().forEach((t) -> {
             gc.drawImage(t.getTreeImage(), t.getX(), t.getY(), t.getTreeSizeWidth(), t.getTreeSizeHeight());
         });
+
+        Font font = Font.font("Pixel Cyr", 40);
+        gc.setFont(font);
+        gc.setFill(Color.WHITE);
+        gc.setTextAlign(TextAlignment.CENTER);
+        gc.setTextBaseline(javafx.geometry.VPos.TOP);
+
+        Text text = new Text("Счет: " + score);
+        double textWidth = text.getLayoutBounds().getWidth();
+
+        gc.fillText(text.getText(), (canvas.getWidth() - textWidth * 4) / 2, 0);
     }
 
     private void update() {
         clearCanvas();
 
         if(isPlaying) {
-//            score += 1;
-//            displayScore();
+            score += 1;
             forrest.moveTrees();
             checkCollision();
         }
@@ -86,15 +102,15 @@ public class GameController extends BaseController {
 
     private void checkCollision() {
         int dinoWidth = dino.getDinoSizeWidth();
-        int dinoHeight = dino.getDinoSizeHeight();
 
         forrest.getTrees().forEach((t) -> {
             int treeWidth =  t.getTreeSizeWidth();
             int treeHeight =  t.getTreeSizeWidth();
 
             if(
-                    Math.abs(t.getX() - dino.getX()) <= ((double) treeWidth / 2 + ((double) dinoWidth / 2)) &&
-                            (Math.abs(dino.getY() - t.getY()) <= (double) dinoHeight / 2 + (double) treeHeight / 2)
+                    (dino.getX() <= t.getX() && (dino.getX() + dinoWidth) >= t.getX() ||
+                        dino.getX() > t.getX() && t.getX() + treeWidth >= dino.getX())
+                    && dino.getY() >= t.getY() - treeHeight
             ) {
                 isPlaying = false;
                 dino.setDinoGameOver();
@@ -107,7 +123,7 @@ public class GameController extends BaseController {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
     }
 
-    public void startGame() {
+    public void startGame(String difficulty) {
         if(dino == null)  {
             dino = new DinoObject((int) node.getScene().getHeight());
         }
@@ -116,8 +132,13 @@ public class GameController extends BaseController {
             forrest = new ForrestObject((int) node.getScene().getHeight(), (int) node.getScene().getWidth());
         }
 
-        isPlaying = true;
+        switch (difficulty) {
+            case "easy" -> forrest.setTreeSpeed(15);
+            case "medium" -> forrest.setTreeSpeed(20);
+            case "hard" -> forrest.setTreeSpeed(25);
+        }
 
+        restartGame();
         animationTimer.start();
     }
 

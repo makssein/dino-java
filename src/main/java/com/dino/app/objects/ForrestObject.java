@@ -33,8 +33,6 @@ public class ForrestObject {
 
         double tX = 0;
 
-        treeSpeed = 10;
-
         if(lastTree != null) {
             tX = lastTree.getX() + treeSpeed * 10 * (5 + random.nextInt(5));
         }

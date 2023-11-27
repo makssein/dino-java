@@ -31,6 +31,7 @@
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
+                  <RowConstraints maxHeight="79.0" minHeight="10.0" prefHeight="79.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="58.0" minHeight="10.0" prefHeight="58.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="24.0" minHeight="2.0" prefHeight="35.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="24.0" minHeight="0.0" prefHeight="24.0" vgrow="SOMETIMES" />
@@ -46,59 +47,60 @@
                   <RowConstraints />
                   <RowConstraints maxHeight="58.0" minHeight="10.0" prefHeight="58.0" />
                   <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="100.0" />
+                  <RowConstraints maxHeight="79.0" minHeight="10.0" prefHeight="79.0" />
               </rowConstraints>
                <children>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Что такое Dinooo!?" wrappingWidth="556.556640625">
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Что такое Dinooo!?" wrappingWidth="556.556640625" GridPane.rowIndex="1">
                      <font>
                         <Font name="Pixel Cyr Normal" size="48.0" />
                      </font>
                   </Text>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Dinooo! - это мини-аналог Google Dino." wrappingWidth="500.21630859375" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Dinooo! - это мини-аналог Google Dino." wrappingWidth="500.21630859375" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                      <font>
                         <Font name="Pixel Cyr Normal" size="18.0" />
                      </font>
                   </Text>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Вам нужно перепрыгивать деревья, чтобы продолжать игру." wrappingWidth="625.21630859375" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Вам нужно перепрыгивать деревья, чтобы продолжать игру." wrappingWidth="625.21630859375" GridPane.rowIndex="3" GridPane.valignment="TOP">
                      <font>
                         <Font name="Pixel Cyr Normal" size="18.0" />
                      </font>
                   </Text>
-                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Если Вы заденете дерево, игра будет окончена." wrappingWidth="625.21630859375" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Если Вы заденете дерево, игра будет окончена." wrappingWidth="625.21630859375" GridPane.rowIndex="4" GridPane.valignment="TOP">
                        <font>
                            <Font name="Pixel Cyr Normal" size="18.0" />
                        </font>
                    </Text>
-                  <Text fill="#f8f8f8" strokeType="OUTSIDE" strokeWidth="0.0" text="Об игре" wrappingWidth="505.21630859375" GridPane.rowIndex="4">
+                  <Text fill="#f8f8f8" strokeType="OUTSIDE" strokeWidth="0.0" text="Об игре" wrappingWidth="505.21630859375" GridPane.rowIndex="5">
                      <font>
                         <Font name="Pixel Cyr Normal" size="48.0" />
                      </font>
                   </Text>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="В игре есть 3 сложности: легко, средне, сложно." wrappingWidth="629.21630859375" GridPane.rowIndex="5">
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="В игре есть 3 сложности: легко, средне, сложно." wrappingWidth="629.21630859375" GridPane.rowIndex="6">
                      <font>
                         <Font name="Pixel Cyr Normal" size="18.0" />
                      </font>
                   </Text>
-                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="От выбранной сложности зависит скорость движения деревьев." wrappingWidth="718.21630859375" GridPane.rowIndex="6">
+                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="От выбранной сложности зависит скорость движения деревьев." wrappingWidth="718.21630859375" GridPane.rowIndex="7">
                        <font>
                            <Font name="Pixel Cyr Normal" size="18.0" />
                        </font>
                    </Text>
-                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Игра может идти бесконечно, пока Вы не проиграете." wrappingWidth="629.21630859375" GridPane.rowIndex="7">
+                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Игра может идти бесконечно, пока Вы не проиграете." wrappingWidth="629.21630859375" GridPane.rowIndex="8">
                        <font>
                            <Font name="Pixel Cyr Normal" size="18.0" />
                        </font>
                    </Text>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Горячие клавиши" GridPane.rowIndex="8">
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Горячие клавиши" GridPane.rowIndex="9">
                      <font>
                         <Font name="Pixel Cyr Normal" size="48.0" />
                      </font>
                   </Text>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="В игре доступно несколько горячих клавиш, которые помогут Вам управлять:" GridPane.rowIndex="9">
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="В игре доступно несколько горячих клавиш, которые помогут Вам управлять:" GridPane.rowIndex="10">
                      <font>
                         <Font name="Pixel Cyr Normal" size="18.0" />
                      </font>
                   </Text>
-                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Space - нажимайте пробел, чтобы динозавр прыгал" GridPane.rowIndex="10">
+                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Space - нажимайте пробел, чтобы динозавр прыгал" GridPane.rowIndex="11">
                        <font>
                            <Font name="Pixel Cyr Normal" size="18.0" />
                        </font>
@@ -106,7 +108,7 @@
                         <Insets left="50.0" />
                      </GridPane.margin>
                    </Text>
-                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Esc - позволит выйти из активной игры в главное меню" GridPane.rowIndex="11">
+                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Esc - позволит выйти из активной игры в главное меню" GridPane.rowIndex="12">
                        <font>
                            <Font name="Pixel Cyr Normal" size="18.0" />
                        </font>
@@ -114,7 +116,7 @@
                         <Insets left="50.0" />
                      </GridPane.margin>
                    </Text>
-                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="R - перезапускает игру в случае проигрыша" GridPane.rowIndex="12">
+                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="R - перезапускает игру в случае проигрыша" GridPane.rowIndex="13">
                        <font>
                            <Font name="Pixel Cyr Normal" size="18.0" />
                        </font>
@@ -122,12 +124,12 @@
                         <Insets left="50.0" />
                      </GridPane.margin>
                    </Text>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Удачной игры!" GridPane.rowIndex="13">
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Удачной игры!" GridPane.rowIndex="14">
                      <font>
                         <Font name="Pixel Cyr Normal" size="48.0" />
                      </font>
                   </Text>
-                  <Button mnemonicParsing="false" onAction="#onGoBackButtonClick" style="-fx-background-color: #fc5653; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #fff;" text="В главное меню" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="14" GridPane.valignment="CENTER">
+                  <Button mnemonicParsing="false" onAction="#onGoBackButtonClick" style="-fx-background-color: #fc5653; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #fff;" text="В главное меню" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="15" GridPane.valignment="CENTER">
                      <font>
                         <Font name="Pixel Cyr Normal" size="18.0" />
                      </font>

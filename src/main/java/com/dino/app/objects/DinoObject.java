@@ -9,8 +9,8 @@ import javafx.util.Duration;
 import java.net.URISyntaxException;
 
 public class DinoObject {
-    private int jumpSpeed = 50;
-    private double gravity = 1.5;
+    private int jumpSpeed = 45;
+    private double gravity = 1.8;
 
     private boolean isJumping = false;
     private Image dinoImage;

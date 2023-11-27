@@ -11,7 +11,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.HashMap;
 
 public class ScreenChanger {
@@ -41,17 +40,19 @@ public class ScreenChanger {
         mainController.setScreenController(this);
         secondController.setScreenController(this);
         difficultyController.setScreenController(this);
+        gameController.setScreenController(this);
     }
 
     private void addScene(String name, Scene scene){
         scenes.put(name, scene);
     }
 
-    public void setScene(String name) {
+    public void setScene(String name, String... difficulty) {
         Platform.runLater(() ->main.setScene(scenes.get(name)));
 
         if(name.equals("gameScene")) {
-            gameController.startGame();
+            if(difficulty[0] == null) difficulty[0] = "easy";
+            gameController.startGame(difficulty[0]);
         } else {
             gameController.stopGame();
         }
