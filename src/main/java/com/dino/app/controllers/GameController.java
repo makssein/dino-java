@@ -47,7 +47,18 @@ public class GameController extends BaseController {
         if(event.getCode() == KeyCode.SPACE && !dino.getIsJumping() && isPlaying) {
             dino.setIsJumping(true);
             dino.jump();
+        } else if(event.getCode() == KeyCode.ESCAPE) {
+            screenController.setScene("mainScene");
+        } else if(event.getCode() == KeyCode.R && !isPlaying) {
+            restartGame();
         }
+    }
+
+    private void restartGame() {
+        forrest.clearTrees();
+        dino.restartDino();
+
+        isPlaying = true;
     }
 
     public void draw() {
@@ -74,16 +85,16 @@ public class GameController extends BaseController {
     }
 
     private void checkCollision() {
-        int dinoWidth = (int) dino.getDinoImage().getWidth();
+        int dinoWidth = dino.getDinoSizeWidth();
+        int dinoHeight = dino.getDinoSizeHeight();
 
         forrest.getTrees().forEach((t) -> {
             int treeWidth =  t.getTreeSizeWidth();
             int treeHeight =  t.getTreeSizeWidth();
 
             if(
-                    (double) treeWidth  / 2 + (double) dinoWidth / 2 >=
-                            Math.abs(t.getX() - ((double) treeWidth / 2) + 45 - dino.getX() - 10) &&
-                            treeHeight >= dino.getY()
+                    Math.abs(t.getX() - dino.getX()) <= ((double) treeWidth / 2 + ((double) dinoWidth / 2)) &&
+                            (Math.abs(dino.getY() - t.getY()) <= (double) dinoHeight / 2 + (double) treeHeight / 2)
             ) {
                 isPlaying = false;
                 dino.setDinoGameOver();
@@ -105,6 +116,12 @@ public class GameController extends BaseController {
             forrest = new ForrestObject((int) node.getScene().getHeight(), (int) node.getScene().getWidth());
         }
 
+        isPlaying = true;
+
         animationTimer.start();
+    }
+
+    public void stopGame() {
+        animationTimer.stop();
     }
 }

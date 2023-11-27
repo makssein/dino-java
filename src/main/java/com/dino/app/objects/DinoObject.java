@@ -42,7 +42,7 @@ public class DinoObject {
         }
     }
 
-    private void restartDino() {
+    public void restartDino() {
         try {
             dinoImage = new Image(getClass().getResource("/img/dino.png").toURI().toString());
         } catch (URISyntaxException e) {

@@ -52,6 +52,8 @@ public class ScreenChanger {
 
         if(name.equals("gameScene")) {
             gameController.startGame();
+        } else {
+            gameController.stopGame();
         }
     }
 }

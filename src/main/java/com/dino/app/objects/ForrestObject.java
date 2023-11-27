@@ -52,7 +52,7 @@ public class ForrestObject {
             TreeObject tree = iterator.next();
             tree.move();
 
-            if (tree.getX() + 10 < 0) {
+            if (tree.getX() + tree.getTreeSizeWidth() < 0) {
                 iterator.remove();
             }
         }
