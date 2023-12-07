@@ -48,7 +48,7 @@ public class ScreenChanger {
     }
 
     public void setScene(String name, String... difficulty) {
-        Platform.runLater(() ->main.setScene(scenes.get(name)));
+        Platform.runLater(() -> main.setScene(scenes.get(name)));
 
         if(name.equals("gameScene")) {
             if(difficulty[0] == null) difficulty[0] = "easy";

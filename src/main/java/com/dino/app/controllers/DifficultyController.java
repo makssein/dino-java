@@ -17,4 +17,9 @@ public class DifficultyController extends BaseController {
     protected void onHardStartButtonClick() {
         screenController.setScene("gameScene", "hard");
     }
+
+    @FXML
+    protected void onGoBackButtonClick() {
+        screenController.setScene("mainScene");
+    }
 }

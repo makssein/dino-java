@@ -4,6 +4,7 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.image.Image;
+import javafx.scene.media.AudioClip;
 import javafx.util.Duration;
 
 import java.net.URISyntaxException;
@@ -24,10 +25,14 @@ public class DinoObject {
     private final int dinoSizeWidth = 240;
     private final int dinoSizeHeight = 240;
 
+    private AudioClip jumpSound;
+
     public DinoObject(int sh) {
         sceneHeight = sh;
         dinoDefaultY = sceneHeight - dinoSizeHeight - 20;
         restartDino();
+
+            jumpSound = new AudioClip(getClass().getResource("/sounds/jump.wav").toString());
     }
 
     public Image getDinoImage() {
@@ -64,6 +69,8 @@ public class DinoObject {
     public void jump() {
         final int[] currentJumpSpeed = {jumpSpeed};
         final Timeline jumpTimer = new Timeline();
+
+        jumpSound.play();
 
         jumpTimer.getKeyFrames().add(
             new KeyFrame(Duration.millis(16), event -> {
