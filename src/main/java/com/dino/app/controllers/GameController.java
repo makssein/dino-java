@@ -88,8 +88,8 @@ public class GameController extends BaseController {
 
         gc.drawImage(dino.getDinoImage(), dino.getX(), dino.getY(), dino.getDinoSizeHeight(), dino.getDinoSizeWidth());
 
-        forrest.getEnemies().forEach((t) -> {
-            gc.drawImage(t.getImage(), t.getX(), t.getY(), t.getSizeWidth(), t.getSizeHeight());
+        forrest.getEnemies().forEach((e) -> {
+            gc.drawImage(e.getImage(), e.getX(), e.getY(), e.getSizeWidth(), e.getSizeHeight());
         });
 
         Font font = Font.font("Pixel Cyr", 40);
@@ -119,14 +119,15 @@ public class GameController extends BaseController {
     private void checkCollision() {
         int dinoWidth = dino.getDinoSizeWidth();
 
-        forrest.getEnemies().forEach((t) -> {
-            int treeWidth = t.getSizeWidth();
-            int treeHeight = t.getSizeWidth();
+        forrest.getEnemies().forEach((e) -> {
+            int enemyWidth = e.getSizeWidth();
+            int enemyHeight = e.getSizeHeight();
+            
             if (
-                    ((dino.getX() <= t.getX() && (dino.getX() + dinoWidth) >= t.getX() ||
-                            dino.getX() > t.getX() && t.getX() + treeWidth >= dino.getX())) &&
-                            (dino.getY() >= t.getY() && (dino.getY() - dino.getDinoSizeHeight()) <= t.getY() ||
-                            dino.getY() < t.getY() && (dino.getY() >= t.getY() - t.getSizeHeight()))
+                    ((dino.getX() <= e.getX() && (dino.getX() + dinoWidth) >= e.getX() ||
+                            dino.getX() > e.getX() && e.getX() + enemyWidth >= dino.getX())) &&
+                            (dino.getY() >= e.getY() && (dino.getY() - dino.getDinoSizeHeight()) <= e.getY() ||
+                            dino.getY() < e.getY() && (dino.getY() >= e.getY() - enemyHeight))
             ) {
                 isPlaying = false;
                 dino.gameOver();
