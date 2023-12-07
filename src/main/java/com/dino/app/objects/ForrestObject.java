@@ -5,10 +5,10 @@ import java.util.Iterator;
 import java.util.Random;
 
 public class ForrestObject {
-    private int treeSpeed;
+    private int enemySpeed;
     final Random random = new Random();
 
-    private final ArrayList<TreeObject> forrest = new ArrayList<>();
+    private final ArrayList<DefaultDinoEnemyObject> forrest = new ArrayList<>();
     private int sceneHeight;
     private int sceneWidth;
 
@@ -17,50 +17,54 @@ public class ForrestObject {
         sceneWidth = sw;
     }
 
-    public void setTreeSpeed(int tSpeed) {
-        treeSpeed = tSpeed;
+    public void setEnemySpeed(int eSpeed) {
+        enemySpeed = eSpeed;
     }
 
-    private final int TREES_MAX_NUMBER = 3;
+    private final int EMENY_MAX_NUMBER = 3;
 
-    public void createTree() {
-        TreeObject lastTree;
+    private void createEnemy() {
+        DefaultDinoEnemyObject lastEnemy;
         if (!forrest.isEmpty()) {
-            lastTree = forrest.get(forrest.size() - 1);
+            lastEnemy = forrest.get(forrest.size() - 1);
         } else {
-            lastTree = null;
+            lastEnemy = null;
         }
 
-        double tX = 0;
+        double eX = 0;
 
-        if(lastTree != null) {
-            tX = lastTree.getX() + treeSpeed * 10 * (5 + random.nextInt(5));
+        if(lastEnemy != null) {
+            eX = lastEnemy.getX() + enemySpeed * 10 * (5 + random.nextInt(5));
         }
 
-        forrest.add(new TreeObject(treeSpeed, tX, sceneHeight, sceneWidth));
+        if(random.nextBoolean()) {
+            forrest.add(new TreeObject(enemySpeed, eX, sceneHeight, sceneWidth));
+        } else {
+            forrest.add(new BirdObject(enemySpeed, eX, sceneHeight, sceneWidth));
+        }
     }
 
-    public void moveTrees() {
-        if(forrest.size() < TREES_MAX_NUMBER) {
-            createTree();
+    public void moveEnemies() {
+        if(forrest.size() < EMENY_MAX_NUMBER) {
+            createEnemy();
         }
 
-        Iterator<TreeObject> iterator = forrest.iterator();
+        Iterator<DefaultDinoEnemyObject> iterator = forrest.iterator();
         while (iterator.hasNext()) {
-            TreeObject tree = iterator.next();
-            tree.move();
+            DefaultDinoEnemyObject enemy = iterator.next();
+            enemy.move();
 
-            if (tree.getX() + tree.getTreeSizeWidth() < 0) {
+            if (enemy.getX() + enemy.getSizeWidth() < 0) {
                 iterator.remove();
             }
         }
     }
 
-    public ArrayList<TreeObject> getTrees() {
+    public ArrayList<DefaultDinoEnemyObject> getEnemies() {
         return forrest;
     }
 
-    public void clearTrees() {
+    public void clearEnemies() {
         forrest.clear();
     }
 }

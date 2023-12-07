@@ -38,6 +38,13 @@ public class GameController extends BaseController {
             }
         });
 
+        canvas.setOnKeyReleased(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                keyReleased(event);
+            }
+        });
+
         canvas.setFocusTraversable(true);
 
         animationTimer = new AnimationTimer() {
@@ -49,18 +56,27 @@ public class GameController extends BaseController {
     }
 
     private void keyPressed(KeyEvent event) {
-        if(event.getCode() == KeyCode.SPACE && !dino.getIsJumping() && isPlaying) {
+        if (event.getCode() == KeyCode.SPACE && !dino.getIsJumping() && isPlaying && !dino.getIsSitDown()) {
             dino.setIsJumping(true);
             dino.jump();
-        } else if(event.getCode() == KeyCode.ESCAPE) {
+        } else if (event.getCode() == KeyCode.S && !dino.getIsJumping() && isPlaying && !dino.getIsSitDown()) {
+            dino.setIsSitDown(true);
+            dino.sitDown();
+        } else if (event.getCode() == KeyCode.ESCAPE) {
             screenController.setScene("mainScene");
-        } else if(event.getCode() == KeyCode.R && !isPlaying) {
+        } else if (event.getCode() == KeyCode.R && !isPlaying) {
             restartGame();
         }
     }
 
+    private void keyReleased(KeyEvent event) {
+        if (event.getCode() == KeyCode.S && isPlaying && dino.getIsSitDown()) {
+            dino.standUp();
+        }
+    }
+
     private void restartGame() {
-        forrest.clearTrees();
+        forrest.clearEnemies();
         dino.restartDino();
 
         isPlaying = true;
@@ -72,8 +88,8 @@ public class GameController extends BaseController {
 
         gc.drawImage(dino.getDinoImage(), dino.getX(), dino.getY(), dino.getDinoSizeHeight(), dino.getDinoSizeWidth());
 
-        forrest.getTrees().forEach((t) -> {
-            gc.drawImage(t.getTreeImage(), t.getX(), t.getY(), t.getTreeSizeWidth(), t.getTreeSizeHeight());
+        forrest.getEnemies().forEach((t) -> {
+            gc.drawImage(t.getImage(), t.getX(), t.getY(), t.getSizeWidth(), t.getSizeHeight());
         });
 
         Font font = Font.font("Pixel Cyr", 40);
@@ -91,9 +107,9 @@ public class GameController extends BaseController {
     private void update() {
         clearCanvas();
 
-        if(isPlaying) {
+        if (isPlaying) {
             score += 1;
-            forrest.moveTrees();
+            forrest.moveEnemies();
             checkCollision();
         }
 
@@ -103,17 +119,17 @@ public class GameController extends BaseController {
     private void checkCollision() {
         int dinoWidth = dino.getDinoSizeWidth();
 
-        forrest.getTrees().forEach((t) -> {
-            int treeWidth =  t.getTreeSizeWidth();
-            int treeHeight =  t.getTreeSizeWidth();
-
-            if(
-                    (dino.getX() <= t.getX() && (dino.getX() + dinoWidth) >= t.getX() ||
-                        dino.getX() > t.getX() && t.getX() + treeWidth >= dino.getX())
-                    && dino.getY() >= t.getY() - treeHeight
+        forrest.getEnemies().forEach((t) -> {
+            int treeWidth = t.getSizeWidth();
+            int treeHeight = t.getSizeWidth();
+            if (
+                    ((dino.getX() <= t.getX() && (dino.getX() + dinoWidth) >= t.getX() ||
+                            dino.getX() > t.getX() && t.getX() + treeWidth >= dino.getX())) &&
+                            (dino.getY() >= t.getY() && (dino.getY() - dino.getDinoSizeHeight()) <= t.getY() ||
+                            dino.getY() < t.getY() && (dino.getY() >= t.getY() - t.getSizeHeight()))
             ) {
                 isPlaying = false;
-                dino.setDinoGameOver();
+                dino.gameOver();
             }
         });
     }
@@ -124,18 +140,18 @@ public class GameController extends BaseController {
     }
 
     public void startGame(String difficulty) {
-        if(dino == null)  {
+        if (dino == null) {
             dino = new DinoObject((int) node.getScene().getHeight());
         }
 
-        if(forrest == null) {
+        if (forrest == null) {
             forrest = new ForrestObject((int) node.getScene().getHeight(), (int) node.getScene().getWidth());
         }
 
         switch (difficulty) {
-            case "easy" -> forrest.setTreeSpeed(15);
-            case "medium" -> forrest.setTreeSpeed(20);
-            case "hard" -> forrest.setTreeSpeed(25);
+            case "easy" -> forrest.setEnemySpeed(15);
+            case "medium" -> forrest.setEnemySpeed(20);
+            case "hard" -> forrest.setEnemySpeed(25);
         }
 
         restartGame();
