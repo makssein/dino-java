@@ -49,6 +49,7 @@
                   <RowConstraints maxHeight="24.0" minHeight="10.0" prefHeight="24.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="24.0" minHeight="10.0" prefHeight="24.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="24.0" minHeight="10.0" prefHeight="24.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="24.0" minHeight="10.0" prefHeight="24.0" vgrow="SOMETIMES" />
                   <RowConstraints />
                   <RowConstraints maxHeight="58.0" minHeight="10.0" prefHeight="58.0" />
                   <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="100.0" />
@@ -121,7 +122,7 @@
                         <Insets left="50.0" />
                      </GridPane.margin>
                    </Text>
-                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="R - перезапускает игру в случае проигрыша" GridPane.rowIndex="13">
+                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="R - перезапускает игру в случае проигрыша" GridPane.rowIndex="14">
                        <font>
                            <Font name="Pixel Cyr Normal" size="18.0" />
                        </font>
@@ -129,16 +130,24 @@
                         <Insets left="50.0" />
                      </GridPane.margin>
                    </Text>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Удачной игры!" GridPane.rowIndex="14">
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Удачной игры!" GridPane.rowIndex="15">
                      <font>
                         <Font name="Pixel Cyr Normal" size="48.0" />
                      </font>
                   </Text>
-                  <Button mnemonicParsing="false" onAction="#onGoBackButtonClick" style="-fx-background-color: #fc5653; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #fff;" text="В главное меню" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="15" GridPane.valignment="CENTER">
+                  <Button mnemonicParsing="false" onAction="#onGoBackButtonClick" style="-fx-background-color: #fc5653; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #fff;" text="В главное меню" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="16" GridPane.valignment="CENTER">
                      <font>
                         <Font name="Pixel Cyr Normal" size="18.0" />
                      </font>
                   </Button>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="S - нажмите клавишу, чтобы динозавр пригнулся" GridPane.rowIndex="13">
+                     <font>
+                        <Font name="Pixel Cyr Normal" size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="50.0" />
+                     </GridPane.margin>
+                  </Text>
                </children>
             </GridPane>
          </children>
