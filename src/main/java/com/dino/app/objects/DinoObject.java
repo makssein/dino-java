@@ -62,7 +62,16 @@ public class DinoObject {
     }
 
     public void gameOver() {
-        restartDino();
+        dinoSizeHeight = 240;
+        dinoSizeWidth = 240;
+
+        if(isSitDown) {
+            dinoY = dinoDefaultY;
+        }
+
+        isSitDown = false;
+        isJumping = false;
+
         dinoImage = dinoGameOverImage;
     }
 

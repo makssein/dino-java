@@ -10,6 +10,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -29,8 +30,11 @@ public class GameController extends BaseController {
     private boolean isPlaying = true;
     private int score = 0;
 
+    private AudioClip gemeOverSound;
+
     @FXML
     private void initialize() {
+
         canvas.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
@@ -44,6 +48,8 @@ public class GameController extends BaseController {
                 keyReleased(event);
             }
         });
+
+        gemeOverSound = new AudioClip(getClass().getResource("/sounds/game_over.wav").toString());
 
         canvas.setFocusTraversable(true);
 
@@ -122,7 +128,7 @@ public class GameController extends BaseController {
         forrest.getEnemies().forEach((e) -> {
             int enemyWidth = e.getSizeWidth();
             int enemyHeight = e.getSizeHeight();
-            
+
             if (
                     ((dino.getX() <= e.getX() && (dino.getX() + dinoWidth) >= e.getX() ||
                             dino.getX() > e.getX() && e.getX() + enemyWidth >= dino.getX())) &&
@@ -130,6 +136,7 @@ public class GameController extends BaseController {
                             dino.getY() < e.getY() && (dino.getY() >= e.getY() - enemyHeight))
             ) {
                 isPlaying = false;
+                gemeOverSound.play();
                 dino.gameOver();
             }
         });
