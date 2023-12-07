@@ -3,7 +3,6 @@ package com.dino.app.controllers;
 import com.dino.app.objects.DinoObject;
 import com.dino.app.objects.ForrestObject;
 import javafx.animation.AnimationTimer;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -11,10 +10,13 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import javafx.util.Duration;
 
 public class GameController extends BaseController {
     @FXML
@@ -30,7 +32,8 @@ public class GameController extends BaseController {
     private boolean isPlaying = true;
     private int score = 0;
 
-    private AudioClip gemeOverSound;
+    private AudioClip gameOverSound;
+    private MediaPlayer gameSound;
 
     @FXML
     private void initialize() {
@@ -39,7 +42,14 @@ public class GameController extends BaseController {
 
         canvas.setOnKeyReleased(this::keyReleased);
 
-        gemeOverSound = new AudioClip(getClass().getResource("/sounds/game_over.wav").toString());
+        gameOverSound = new AudioClip(getClass().getResource("/sounds/game_over.wav").toString());
+        gameOverSound.setVolume(0.2);
+
+        Media media = new Media(getClass().getResource("/sounds/game_music.wav").toString());
+        gameSound = new MediaPlayer(media);
+        gameSound.setVolume(0.2);
+        gameSound.seek(Duration.ZERO);
+        gameSound.setCycleCount(MediaPlayer.INDEFINITE);
 
         canvas.setFocusTraversable(true);
 
@@ -77,6 +87,9 @@ public class GameController extends BaseController {
 
         isPlaying = true;
         score = 0;
+
+        gameSound.seek(Duration.ZERO);
+        gameSound.play();
     }
 
     public void draw() {
@@ -137,8 +150,9 @@ public class GameController extends BaseController {
                             dino.getY() < e.getY() && (dino.getY() >= e.getY() - enemyHeight))
             ) {
                 isPlaying = false;
-                gemeOverSound.play();
+                gameOverSound.play();
                 dino.gameOver();
+                gameSound.stop();
             }
         });
     }
@@ -165,9 +179,14 @@ public class GameController extends BaseController {
 
         restartGame();
         animationTimer.start();
+
+        gameSound.play();
+
     }
 
     public void stopGame() {
         animationTimer.stop();
+
+        gameSound.stop();
     }
 }

@@ -40,6 +40,7 @@ public class DinoObject {
         dinoDefaultY = sceneHeight - dinoSizeHeight - 20;
 
         jumpSound = new AudioClip(getClass().getResource("/sounds/jump.wav").toString());
+        jumpSound.setVolume(0.2);
 
         dinoGameOverImage = loadDinoImage(DINO_GAMEOVER_PATH);
         dinoSatDownImage = loadDinoImage(DINO_SAT_DOWN_PATH);

@@ -34,7 +34,7 @@ public class ForrestObject {
         double eX = 0;
 
         if(lastEnemy != null) {
-            eX = lastEnemy.getX() + enemySpeed * 10 * (5 + random.nextInt(5));
+            eX = lastEnemy.getX() + enemySpeed * 10 * (6 + random.nextInt(5));
         }
 
         if(random.nextBoolean()) {
