@@ -1,28 +1,14 @@
 package com.dino.app.objects;
 
-import javafx.scene.image.Image;
-
-import java.net.URISyntaxException;
-
 public class BirdObject extends DefaultDinoEnemyObject {
+
+    private static String BIRD_DEFAULT_PATH = "/img/bird.png";
     public BirdObject(int tSpeed, double tX, int sh, int sw) {
-        sceneHeight = sh;
-        sceneWidth = sw;
-        enemyY = sceneHeight - enemySizeHeight - 100;
+        super(tSpeed, tX, sh, sw, BIRD_DEFAULT_PATH);
 
-        try {
-            enemyImage = new Image(getClass().getResource("/img/bird.png").toURI().toString());
-        } catch (
-                URISyntaxException e) {
-            System.out.println("dino image not found");
-        }
+        enemySizeWidth = 250;
+        enemySizeHeight = 280;
 
-        if (tX > 0) {
-            enemyX = tX;
-        } else {
-            enemyX = sceneWidth;
-        }
-
-        enemySpeed = tSpeed;
+        enemyY = sceneHeight - enemySizeHeight - 150;
     }
 }

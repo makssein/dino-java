@@ -56,21 +56,21 @@ public class GameController extends BaseController {
     }
 
     private void keyPressed(KeyEvent event) {
-        if(event.getCode() == KeyCode.SPACE && !dino.getIsJumping() && isPlaying && !dino.getIsSitDown()) {
+        if (event.getCode() == KeyCode.SPACE && !dino.getIsJumping() && isPlaying && !dino.getIsSitDown()) {
             dino.setIsJumping(true);
             dino.jump();
-        } else if(event.getCode() == KeyCode.S && !dino.getIsJumping() && isPlaying && !dino.getIsSitDown()) {
+        } else if (event.getCode() == KeyCode.S && !dino.getIsJumping() && isPlaying && !dino.getIsSitDown()) {
             dino.setIsSitDown(true);
             dino.sitDown();
-        } else if(event.getCode() == KeyCode.ESCAPE) {
+        } else if (event.getCode() == KeyCode.ESCAPE) {
             screenController.setScene("mainScene");
-        } else if(event.getCode() == KeyCode.R && !isPlaying) {
+        } else if (event.getCode() == KeyCode.R && !isPlaying) {
             restartGame();
         }
     }
 
     private void keyReleased(KeyEvent event) {
-        if(event.getCode() == KeyCode.S && isPlaying && dino.getIsSitDown()) {
+        if (event.getCode() == KeyCode.S && isPlaying && dino.getIsSitDown()) {
             dino.standUp();
         }
     }
@@ -107,7 +107,7 @@ public class GameController extends BaseController {
     private void update() {
         clearCanvas();
 
-        if(isPlaying) {
+        if (isPlaying) {
             score += 1;
             forrest.moveEnemies();
             checkCollision();
@@ -120,13 +120,13 @@ public class GameController extends BaseController {
         int dinoWidth = dino.getDinoSizeWidth();
 
         forrest.getEnemies().forEach((t) -> {
-            int treeWidth =  t.getSizeWidth();
-            int treeHeight =  t.getSizeWidth();
-
-            if(
-                    (dino.getX() <= t.getX() && (dino.getX() + dinoWidth) >= t.getX() ||
-                        dino.getX() > t.getX() && t.getX() + treeWidth >= dino.getX())
-                    && dino.getY() >= t.getY() - treeHeight
+            int treeWidth = t.getSizeWidth();
+            int treeHeight = t.getSizeWidth();
+            if (
+                    ((dino.getX() <= t.getX() && (dino.getX() + dinoWidth) >= t.getX() ||
+                            dino.getX() > t.getX() && t.getX() + treeWidth >= dino.getX())) &&
+                            (dino.getY() >= t.getY() && (dino.getY() - dino.getDinoSizeHeight()) <= t.getY() ||
+                            dino.getY() < t.getY() && (dino.getY() >= t.getY() - t.getSizeHeight()))
             ) {
                 isPlaying = false;
                 dino.gameOver();
@@ -140,11 +140,11 @@ public class GameController extends BaseController {
     }
 
     public void startGame(String difficulty) {
-        if(dino == null)  {
+        if (dino == null) {
             dino = new DinoObject((int) node.getScene().getHeight());
         }
 
-        if(forrest == null) {
+        if (forrest == null) {
             forrest = new ForrestObject((int) node.getScene().getHeight(), (int) node.getScene().getWidth());
         }
 

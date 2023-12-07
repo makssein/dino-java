@@ -37,7 +37,11 @@ public class ForrestObject {
             eX = lastEnemy.getX() + enemySpeed * 10 * (5 + random.nextInt(5));
         }
 
-        forrest.add(new TreeObject(enemySpeed, eX, sceneHeight, sceneWidth));
+        if(random.nextBoolean()) {
+            forrest.add(new TreeObject(enemySpeed, eX, sceneHeight, sceneWidth));
+        } else {
+            forrest.add(new BirdObject(enemySpeed, eX, sceneHeight, sceneWidth));
+        }
     }
 
     public void moveEnemies() {

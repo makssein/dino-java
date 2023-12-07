@@ -1,27 +1,14 @@
 package com.dino.app.objects;
 
-import javafx.scene.image.Image;
-
-import java.net.URISyntaxException;
-
 public class TreeObject extends DefaultDinoEnemyObject {
+
+    private static String TREE_DEFAULT_PATH = "/img/tree.png";
     public TreeObject(int tSpeed, double tX, int sh, int sw) {
-        sceneHeight = sh;
-        sceneWidth = sw;
+        super(tSpeed, tX, sh, sw, TREE_DEFAULT_PATH);
+
+        enemySizeWidth = 146;
+        enemySizeHeight = 280;
+
         enemyY = sceneHeight - enemySizeHeight - 20;
-
-        try {
-            enemyImage = new Image(getClass().getResource("/img/tree.png").toURI().toString());
-        } catch (URISyntaxException e) {
-            System.out.println("dino image not found");
-        }
-
-        if(tX > 0) {
-            enemyX = tX;
-        } else {
-            enemyX = sceneWidth;
-        }
-
-        enemySpeed = tSpeed;
     }
 }

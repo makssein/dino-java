@@ -16,6 +16,9 @@ public class DinoObject {
     private boolean isJumping = false;
     private boolean isSitDown = false;
     private Image dinoImage;
+    private Image dinoGameOverImage;
+    private Image dinoSatDownImage;
+    private Image dinoDefaultImage;
 
     private int dinoX = 50;
     private int dinoY = 0;
@@ -26,17 +29,21 @@ public class DinoObject {
     private int dinoSizeWidth = 240;
     private int dinoSizeHeight = 240;
 
-    private AudioClip jumpSound;
+    private final AudioClip jumpSound;
 
-    private static String DINO_GAMEOVER_PATH = "/img/dino_gameover.png";
-    private static String DINO_SAT_DOWN_PATH = "/img/dino_sat_down.png";
-    private static String DINO_DEFAULT_PATH = "/img/dino.png";
+    private static final String DINO_GAMEOVER_PATH = "/img/dino_gameover.png";
+    private static final String DINO_SAT_DOWN_PATH = "/img/dino_sat_down.png";
+    private static final String DINO_DEFAULT_PATH = "/img/dino.png";
 
     public DinoObject(int sh) {
         sceneHeight = sh;
         dinoDefaultY = sceneHeight - dinoSizeHeight - 20;
 
         jumpSound = new AudioClip(getClass().getResource("/sounds/jump.wav").toString());
+
+        dinoGameOverImage = loadDinoImage(DINO_GAMEOVER_PATH);
+        dinoSatDownImage = loadDinoImage(DINO_SAT_DOWN_PATH);
+        dinoDefaultImage = loadDinoImage(DINO_DEFAULT_PATH);
 
         restartDino();
     }
@@ -46,7 +53,7 @@ public class DinoObject {
     }
 
     public void restartDino() {
-        setDinoImage(DINO_DEFAULT_PATH);
+        dinoImage = dinoDefaultImage;
 
         dinoX = 50;
         dinoY = dinoDefaultY;
@@ -55,15 +62,19 @@ public class DinoObject {
     }
 
     public void gameOver() {
-        setDinoImage(DINO_GAMEOVER_PATH);
+        restartDino();
+        dinoImage = dinoGameOverImage;
     }
 
-    private void setDinoImage(String img) {
+    private Image loadDinoImage(String img_path) {
+        Image img = null;
         try {
-            dinoImage = new Image(getClass().getResource(img).toURI().toString());
+            img = new Image(getClass().getResource(img_path).toURI().toString());
         } catch (URISyntaxException e) {
             System.out.println("dino image not found");
         }
+
+        return img;
     }
 
     public void jump() {
@@ -92,7 +103,8 @@ public class DinoObject {
     public void sitDown() {
         dinoSizeWidth = 119;
         dinoY = dinoDefaultY + 240 - dinoSizeWidth;
-        setDinoImage(DINO_SAT_DOWN_PATH);
+
+        dinoImage = dinoSatDownImage;
     }
 
     public void standUp() {
