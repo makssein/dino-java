@@ -35,19 +35,9 @@ public class GameController extends BaseController {
     @FXML
     private void initialize() {
 
-        canvas.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                keyPressed(event);
-            }
-        });
+        canvas.setOnKeyPressed(this::keyPressed);
 
-        canvas.setOnKeyReleased(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                keyReleased(event);
-            }
-        });
+        canvas.setOnKeyReleased(this::keyReleased);
 
         gemeOverSound = new AudioClip(getClass().getResource("/sounds/game_over.wav").toString());
 
@@ -107,7 +97,18 @@ public class GameController extends BaseController {
         Text text = new Text("Счет: " + score);
         double textWidth = text.getLayoutBounds().getWidth();
 
-        gc.fillText(text.getText(), (canvas.getWidth() - textWidth * 4) / 2, 0);
+        if(!isPlaying) {
+            gc.setFill(Color.rgb(85, 53, 199, 1));
+            Text restartText = new Text("Ваш счет: " + score + "\nНажмите R, чтобы сыграть еще раз");
+
+            gc.strokeText(restartText.getText(), (canvas.getWidth() - textWidth * 4) / 2, 250);
+            gc.setStroke(Color.WHITE);
+            gc.setLineWidth(1);
+            gc.fillText(restartText.getText(), (canvas.getWidth() - textWidth * 4) / 2, 250);
+
+        } else {
+            gc.fillText(text.getText(), (canvas.getWidth() - textWidth * 4) / 2, 0);
+        }
     }
 
     private void update() {
